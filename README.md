@@ -1,2 +1,2 @@
-# -A-DS-Sorting-Algorithms
+# DS-Sorting-Algorithms
 With counter of each comparison, swap and time measurement
