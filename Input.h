@@ -5,10 +5,9 @@
 #include <string_view>
 #include <vector>
 
-int getUserInput(std::string_view message);
-int getUserVectorSize(std::string_view message);
-std::vector<int> createUserPromptedVector(int vector_size);
+int getUserInput(std::string_view message = "");
+int getUserDataSize(std::string_view message = "");
 
-#endif // !INPUT_H
+#endif
 
 

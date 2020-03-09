@@ -2,11 +2,11 @@
 
 int getUserInput(std::string_view message)
 {
+	if (!message.empty())
+		std::cout << message << '\n';
+
 	while (true)
 	{
-		if (!message.empty())
-			std::cout << message << '\n';
-
 		int x{};
 		std::cin >> x;
 
@@ -24,26 +24,17 @@ int getUserInput(std::string_view message)
 	}
 }
 
-std::vector<int> createUserPromptedVector(const int vector_size)
+int getUserDataSize(std::string_view message)
 {
-	std::cout << "Prompt with " << vector_size << " number to create a vector." << '\n';
-	std::vector<int> result{};
-	for (int i{ 0 }; i < vector_size; ++i)
-	{
-		int x{ getUserInput("") };
-		result.emplace_back(x);
-	}
-	return result;
-}
+	if (!message.empty())
+		std::cout << message << '\n';
 
-int getUserVectorSize(std::string_view message)
-{
 	while (true)
 	{
-		int x{ getUserInput(message) };
-		if (x > 10 || x < 1)
-			std::cout << "You entered a wrong number - must from [1, 10]" << '\n';
-		else
+		int x = getUserInput();
+		if (x >= 1)
 			return x;
+		else
+			std::cout << "Invalid input - please try again." << '\n';
 	}
 }

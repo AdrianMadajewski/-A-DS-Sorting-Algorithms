@@ -1,15 +1,15 @@
 #include "Random.h"
 
-namespace Random
+namespace random
 {
 	// Create random distribution seed
 	std::random_device rd;
 	std::mt19937 seed(rd());
 
-	int getRandomNumber(const int min, const int max)
+	int generateNumber(const int min, const int max)
 	{
 		std::uniform_int_distribution<> die{ min, max };
-		return die(Random::seed);
+		return die(random::seed);
 	}
 }
 

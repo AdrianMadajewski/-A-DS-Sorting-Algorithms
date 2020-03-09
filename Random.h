@@ -3,9 +3,9 @@
 
 #include <random>		// for std::mt19937, std::random_device
 
-namespace Random
+namespace random
 {
-	int getRandomNumber(const int min, const int max);
+	int generateNumber(const int, const int);
 }
 
 #endif
