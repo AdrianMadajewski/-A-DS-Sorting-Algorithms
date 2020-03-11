@@ -18,18 +18,18 @@ enum VectType
 	FILE_VECT
 };
 
-constexpr int DATA_SIZE_MIN = -10;
-constexpr int DATA_SIZE_MAX = 10;
+constexpr int DATA_SIZE_MIN = 0;
+constexpr int DATA_SIZE_MAX = 10000;
 
 struct Vect
 {
 	VectType type;
 	std::vector<int> data;
 	Vect(VectType type, std::vector<int> data) : type(type), data(data) {}
-	// TODO: DEFAULT CONSTRUCTOR WITH NO VALUES
+	Vect() = default;
 };
 
-std::string vector_type_toString(VectType type);
+std::string VectType_toString(VectType type);
 
 namespace generate
 {

@@ -38,3 +38,35 @@ int getUserDataSize(std::string_view message)
 			std::cout << "Invalid input - please try again." << '\n';
 	}
 }
+
+int getUserMaxElementsRange(std::string_view message)
+{
+	if (!message.empty())
+		std::cout << message << '\n';
+
+	while (true)
+	{
+		int x = getUserInput();
+		if (x > 10)
+			return x;
+		else
+			std::cout << "Invalid input - please try again." << '\n';
+	}
+}
+
+bool askUser(const std::string_view& message)
+{
+	if (!message.empty())
+		std::cout << message << '\n';
+
+	while (true)
+	{
+		int x = getUserInput();
+		if (x == 1)
+			return true;
+		if (x == 0)
+			return false;
+		else
+			std::cout << "Invalid input - please try again" << '\n';
+	}
+}

@@ -1,7 +1,7 @@
 #include "Data.h"
 #include "Input.h"
 
-std::string vector_type_toString(VectType type)
+std::string VectType_toString(VectType type)
 {
 	switch (type)
 	{
@@ -13,6 +13,8 @@ std::string vector_type_toString(VectType type)
 		return "DESC";
 	case V_SHAPED_VECT:
 		return "V_SHAPED";
+	case A_SHAPED_VECT:
+		return "A_SHAPED";
 	case USER_VECT:
 		return "USER";
 	case FILE_VECT:
@@ -53,17 +55,25 @@ namespace generate
 		return Vect(DESC_VECT, data);
 	}
 
-	// TODO:
 	Vect v_shaped_vector(const int vector_size)
 	{
-		std::vector<int> data{};
+		std::vector<int> data(vector_size);
+		for (int i = 0; i < vector_size / 2; ++i) {
+			data.at(i) = DATA_SIZE_MAX - i;
+			data.at(vector_size - i - 1) = DATA_SIZE_MAX - i;
+		}
+
 		return Vect(V_SHAPED_VECT, data);
 	}
 
-	// TODO:
 	Vect a_shaped_vector(const int vector_size)
 	{
-		std::vector<int> data{};
+		std::vector<int> data(vector_size);
+		for (int i = 0; i < vector_size / 2; ++i) {
+			data.at(i) = DATA_SIZE_MIN + i;
+			data.at(vector_size - i - 1) = DATA_SIZE_MIN + i;
+		}
+
 		return Vect(A_SHAPED_VECT, data);
 	}
 

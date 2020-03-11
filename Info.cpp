@@ -1,12 +1,13 @@
 #include "Info.h"
 #include "Data.h"
 #include "Sort.h"
+#include "Input.h"
 
 namespace info
 {
 	void print_vector(std::ostream &stream, Vect &vect)
 	{
-		stream << vector_type_toString(vect.type) << " size=" << vect.data.size() << " [";
+		stream << VectType_toString(vect.type) << " size=" << vect.data.size() << " [";
 		for (size_t i{ 0 }; i < vect.data.size() - 1; ++i) {
 			stream << vect.data[i] << ',';
 		}
@@ -14,19 +15,23 @@ namespace info
 		
 	}
 
-	// aditional should be std::vector (save to a file???)
-	void full_info(std::ostream& stream, SortType s_type, VectType v_type, int v_size, int comparisons, int swaps, int duration, int additional)
+	void full_info(std::ostream& stream, SortType s_type, VectType v_type, int v_size, int comparisons, int swaps, int duration, std::vector<int> additional)
 	{
-		std::string s_sort_type = sort_type_toString(s_type);
-		std::string s_vect_type = vector_type_toString(v_type);
-		stream << s_sort_type << '\t' << s_vect_type << '\t' << v_size << '\t' << comparisons << '\t' << swaps << '\t'  << duration << '\t' << additional << '\n';
+		std::string s_sort_type = SortType_toString(s_type);
+		std::string s_vect_type = VectType_toString(v_type);
+		stream << s_sort_type << '\t' << s_vect_type << '\t' << v_size << '\t' << comparisons << '\t' << swaps << '\t' << duration << '\t';
+
+		if (additional.size() > 0)
+			for (auto& elem : additional)
+				stream << elem << " ";
+		stream << '\n';
+		
 	}
 
 	void small_info(std::ostream& stream, SortType s_type, VectType v_type)
 	{
-		std::string s_sort_type = sort_type_toString(s_type);
-		std::string s_vect_type = vector_type_toString(v_type);
+		std::string s_sort_type = SortType_toString(s_type);
+		std::string s_vect_type = VectType_toString(v_type);
 		stream << s_sort_type << " with " << s_vect_type << " data ended.\n";
 	}
-	
 }

@@ -9,7 +9,8 @@
 
 #include "Data.h"
 
-#define UNIT_TIME std::chrono::nanoseconds
+#define UNIT_TIME std::chrono::microseconds
+constexpr auto SORTS_TO_USE = 5;
 
 enum SortType
 {
@@ -20,9 +21,10 @@ enum SortType
 	SHELL_SORT,
 };
 
-std::string sort_type_toString(SortType type);
+std::string SortType_toString(SortType type);
 
-void sort_to_use(SortType algo, Vect data, std::ostream& stream = std::cout, bool log = false);
+void which_algorithm_to_use(SortType algo, Vect data, std::ostream& stream = std::cout, bool log = false);
+void sorts_to_execute(std::ostream& stream, Vect& vect);
 
 namespace insertion
 {
@@ -35,7 +37,22 @@ namespace heap
 	void sort(Vect& vect, std::ostream& stream = std::cout, bool log = false);
 }
 
+namespace merge
+{
+	void sort(Vect& vect, std::ostream& stream = std::cout, bool log = false);
+	void help_sort(std::vector<int>& data, int leftIndex, int rightIndex, int& comparisons, int& swaps, UNIT_TIME& duration);
+	void mergeAll(std::vector<int>& data, int leftIndex, int middleIndex, int rightIndex, int& comparisons, int& swaps);
+}
 
-// TODO: the rest
+namespace quick
+{
+	void sort(Vect& vect, std::ostream& stream = std::cout, bool log = false);
+}
+
+namespace shell
+{
+	void sort(Vect& vect, std::ostream& stream = std::cout, bool log = false);
+}
+
 
 #endif
