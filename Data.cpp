@@ -24,7 +24,7 @@ std::string VectType_toString(VectType type)
 	}
 }
 
-namespace generate
+namespace create
 {
 	Vect random_vector(const int vector_size)
 	{
@@ -114,6 +114,29 @@ namespace generate
 		}
 	
 		return Vect(FILE_VECT, data);
+	}
+
+	std::ofstream create_file()
+	{
+		std::cout << "Enter a filename to redirect:" << '\n';
+		std::string filename{};
+		std::cin >> filename;
+
+		std::ofstream file;
+		file.open(filename, std::ios::out);
+
+		if (!file.is_open())
+		{
+			std::cout << "Couldn't open file " << filename << '\n';
+			std::cout << "Please restart" << '\n';
+			std::cin.get();
+			exit(-1);
+		}
+		else
+		{
+			std::cout << "File opened - log will be set to '" << filename << "'" << '\n';
+			return file;
+		}
 	}
 	
 }

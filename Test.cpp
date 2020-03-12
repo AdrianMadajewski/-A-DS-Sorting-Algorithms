@@ -2,18 +2,18 @@
 
 void performTesting(const int max_elements, bool full_info_mode, std::ostream& stream)
 {
-	bool generate_continue = askUser("Continue? (1) - yes, (0) - no");
+	bool generate_continue = askUser("Continue? 1 = yes, 0 = no");
 
 	if (generate_continue)
 	{
 		for (int i = 10; i < max_elements; ++i)
 		{
 			// Generate each data set
-			auto random = generate::random_vector(i);
-			auto asc = generate::asc_vector(i);
-			auto desc = generate::desc_vector(i);
-			auto a_shape = generate::a_shaped_vector(i);
-			auto v_shape = generate::v_shaped_vector(i);
+			auto random = create::random_vector(i);
+			auto asc = create::asc_vector(i);
+			auto desc = create::desc_vector(i);
+			auto a_shape = create::a_shaped_vector(i);
+			auto v_shape = create::v_shaped_vector(i);
 
 			std::cout << "Sorting with size = " << i << '\n';
 
@@ -27,7 +27,7 @@ void performTesting(const int max_elements, bool full_info_mode, std::ostream& s
 				which_algorithm_to_use(algo_type, a_shape, stream, full_info_mode);
 			}
 
-			std::cout << "Sorting with size = " << i << " ended" << '\n';
+			std::cout << "Sorting with size = " << i + 1 << " ended" << '\n';
 		}
 	}
 }

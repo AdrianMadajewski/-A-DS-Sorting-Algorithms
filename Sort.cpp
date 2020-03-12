@@ -38,7 +38,7 @@ void sorts_to_execute(std::ostream& stream, Vect& vect)
 		exec.at(i) = askUser();
 	}
 
-	bool full_info_mode = askUser("Enable full-info mode? (1) -> yes, (0) -> no");
+	bool full_info_mode = askUser("Enable full-info mode? -> 1 = yes, 0 = no");
 	std::cout << "SORTING STARTED..." << '\n';
 
 	for (int i = 0; i < SORTS_TO_USE; ++i) {
@@ -101,12 +101,10 @@ namespace insertion
 
 		auto duration{ std::chrono::duration_cast<UNIT_TIME>(stop - start) };
 
-		if (log) {
+		if (log)
 			info::full_info(stream, INSERTION_SORT, vect.type, data.size(), comparisons, swaps, duration.count());
-		}
-		else {
+		else 
 			info::small_info(stream, INSERTION_SORT, vect.type);
-		}
 	}
 }
 
@@ -167,12 +165,10 @@ namespace heap
 
 		auto duration{ std::chrono::duration_cast<UNIT_TIME>(stop - start) };
 
-		if (log) {
+		if (log) 
 			info::full_info(stream, HEAP_SORT, vect.type, data.size(), comparisons, swaps, duration.count());
-		}
-		else {
+		else 
 			info::small_info(stream, HEAP_SORT, vect.type);
-		}
 	}
 }
 
@@ -301,12 +297,10 @@ namespace shell
 
 		auto duration{ std::chrono::duration_cast<UNIT_TIME>(stop - start) };
 
-		if (log) {
+		if (log) 
 			info::full_info(stream, SHELL_SORT, vect.type, data.size(), comparisons, swaps, duration.count(), knuth);
-		}
-		else {
+		else 
 			info::small_info(stream, SHELL_SORT, vect.type);
-		}
 	}
 }
 

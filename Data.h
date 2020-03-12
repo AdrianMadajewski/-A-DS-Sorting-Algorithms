@@ -18,8 +18,8 @@ enum VectType
 	FILE_VECT
 };
 
-constexpr int DATA_SIZE_MIN = 0;
-constexpr int DATA_SIZE_MAX = 10000;
+constexpr auto DATA_SIZE_MIN = 0;
+constexpr auto DATA_SIZE_MAX = 10000;
 
 struct Vect
 {
@@ -31,7 +31,7 @@ struct Vect
 
 std::string VectType_toString(VectType type);
 
-namespace generate
+namespace create
 {
 	Vect random_vector(const int vector_size);
 	Vect asc_vector(const int vector_size);
@@ -40,6 +40,7 @@ namespace generate
 	Vect a_shaped_vector(const int vector_size);
 	Vect user_vector(std::string_view message="");
 	Vect file_vector(const std::string& filename);
+	std::ofstream create_file();
 }
 
 #endif

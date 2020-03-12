@@ -17,12 +17,12 @@ namespace info
 
 	void full_info(std::ostream& stream, SortType s_type, VectType v_type, int v_size, int comparisons, int swaps, int duration, std::vector<int> additional)
 	{
-		std::string s_sort_type = SortType_toString(s_type);
-		std::string s_vect_type = VectType_toString(v_type);
-		stream << s_sort_type << '\t' << s_vect_type << '\t' << v_size << '\t' << comparisons << '\t' << swaps << '\t' << duration << '\t';
+		std::string sort_type = SortType_toString(s_type);
+		std::string vect_type = VectType_toString(v_type);
+		stream << sort_type << '\t' << vect_type << '\t' << v_size << '\t' << comparisons << '\t' << swaps << '\t' << duration << '\t';
 
-		if (additional.size() > 0)
-			for (auto& elem : additional)
+		if (!additional.empty())
+			for (const auto& elem : additional)
 				stream << elem << " ";
 		stream << '\n';
 		
@@ -30,8 +30,8 @@ namespace info
 
 	void small_info(std::ostream& stream, SortType s_type, VectType v_type)
 	{
-		std::string s_sort_type = SortType_toString(s_type);
-		std::string s_vect_type = VectType_toString(v_type);
-		stream << s_sort_type << " with " << s_vect_type << " data ended.\n";
+		std::string sort_type = SortType_toString(s_type);
+		std::string vect_type = VectType_toString(v_type);
+		stream << sort_type << " with " << vect_type << " data ended.\n";
 	}
 }
