@@ -10,7 +10,7 @@
 #include "Data.h"
 
 #define UNIT_TIME std::chrono::microseconds
-constexpr auto SORTS_TO_USE = 5;
+inline constexpr auto SORTS_TO_USE = 5;
 
 enum SortType
 {
@@ -23,7 +23,7 @@ enum SortType
 
 std::string SortType_toString(SortType type);
 
-void which_algorithm_to_use(SortType algo, Vect data, std::ostream& stream = std::cout, bool log = false);
+void execute_algorithm(SortType algo, Vect data, std::ostream& stream = std::cout, bool log = false);
 void sorts_to_execute(std::ostream& stream, Vect& vect);
 
 namespace insertion
@@ -44,10 +44,6 @@ namespace merge
 	void mergeAll(std::vector<int>& data, int leftIndex, int middleIndex, int rightIndex, int& comparisons, int& swaps);
 }
 
-namespace quick
-{
-	void sort(Vect& vect, std::ostream& stream = std::cout, bool log = false);
-}
 
 namespace shell
 {

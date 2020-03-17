@@ -18,8 +18,8 @@ enum VectType
 	FILE_VECT
 };
 
-constexpr auto DATA_SIZE_MIN = 0;
-constexpr auto DATA_SIZE_MAX = 10000;
+static constexpr auto DATA_SIZE_MIN = 0;
+static constexpr auto DATA_SIZE_MAX = 10000;
 
 struct Vect
 {
@@ -40,7 +40,7 @@ namespace create
 	Vect a_shaped_vector(const int vector_size);
 	Vect user_vector(std::string_view message="");
 	Vect file_vector(const std::string& filename);
-	std::ofstream create_file();
+	std::ofstream redirect_to_file();
 }
 
 #endif

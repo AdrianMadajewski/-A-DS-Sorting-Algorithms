@@ -2,29 +2,44 @@
 #include "Info.h"
 #include "Input.h"
 
-void which_algorithm_to_use(SortType algo, Vect data, std::ostream& stream, bool log)
+void execute_algorithm(SortType algo, Vect vector, std::ostream& stream, bool log)
 {
+	std::vector<int> additional;
+	auto& data = vector.data;
+
+	int comparisons{ 0 };
+	int swaps{ 0 };
+	auto start{ std::chrono::high_resolution_clock::now() };
+
 	switch (algo)
 	{
 	case INSERTION_SORT:
-		insertion::sort(data, stream, log);
+		insertion::sort(vector, stream, log);
 		break;
 	case HEAP_SORT:
-		heap::sort(data, stream, log);
+		heap::sort(vector, stream, log);
 		break;
 	case MERGE_SORT:
-		merge::sort(data, stream, log);
+		merge::sort(vector, stream, log);
 		break;
 	case QUICK_SORT:
-		quick::sort(data, stream, log);
+		quick_sort(data, 0, data.size() - 1, comparisons, swaps, additional);
 		break;
 	case SHELL_SORT:
-		shell::sort(data, stream, log);
+		shell::sort(vector, stream, log);
 		break;
 	default:
 		stream << "SORT_ERROR" << '\n';
 		break;
 	}
+
+	auto stop{ std::chrono::high_resolution_clock::now() };
+	auto duration{ std::chrono::duration_cast<UNIT_TIME>(stop - start) };
+
+	if (log)
+		info::full_info(stream, algo, vector.type, vector.data.size(), comparisons, swaps, duration.count(), additional);
+	else
+		info::small_info(stream, algo, vector.type);
 }
 
 void sorts_to_execute(std::ostream& stream, Vect& vect)
@@ -43,8 +58,8 @@ void sorts_to_execute(std::ostream& stream, Vect& vect)
 
 	for (int i = 0; i < SORTS_TO_USE; ++i) {
 		SortType type = static_cast<SortType>(i);
-		std::string s_type = SortType_toString(type);
-		which_algorithm_to_use(type, vect, stream, full_info_mode);
+		if(exec[i])
+			execute_algorithm(type, vect, stream, full_info_mode);
 	}
 	std::cout << "SORTING ENDED..." << '\n';
 }
@@ -221,18 +236,15 @@ namespace merge
 
 		while (finger1 <= middleIndex && finger2 <= rightIndex)
 		{
+			comparisons++;
 			if (extra[finger1] <= extra[finger2])
 			{
-				comparisons++;
 				data[current] = extra[finger1];
-				swaps++;
 				finger1++;
 			}
 			else
 			{
-				comparisons++;
 				data[current] = extra[finger2];
-				swaps++;
 				finger2++;
 			}
 			current++;
@@ -241,7 +253,6 @@ namespace merge
 		while (finger1 <= middleIndex)
 		{
 			data[current] = extra[finger1];
-			swaps++;
 			current++;
 			finger1++;
 		}
@@ -254,7 +265,28 @@ namespace quick
 {
 	void sort(Vect& vect, std::ostream& stream, bool log)
 	{
+		std::vector<int>& data = vect.data;
+		if (!data.size())
+			return;
 
+		int comparisons{ 0 };
+		int swaps{ 0 };
+
+		std::vector<int> partition_elems;
+
+		// Start measuring time
+		auto start{ std::chrono::high_resolution_clock::now() };
+
+		// Stop measuring time
+		auto stop{ std::chrono::high_resolution_clock::now() };
+
+		
+		auto duration{ std::chrono::duration_cast<UNIT_TIME>(stop - start) };
+
+		if (log)
+			info::full_info(stream, SHELL_SORT, vect.type, data.size(), comparisons, swaps, duration.count(), partition_elems);
+		else
+			info::small_info(stream, SHELL_SORT, vect.type);
 	}
 }
 
@@ -303,5 +335,6 @@ namespace shell
 			info::small_info(stream, SHELL_SORT, vect.type);
 	}
 }
+
 
 

@@ -116,7 +116,7 @@ namespace create
 		return Vect(FILE_VECT, data);
 	}
 
-	std::ofstream create_file()
+	std::ofstream redirect_to_file()
 	{
 		std::cout << "Enter a filename to redirect:" << '\n';
 		std::string filename{};

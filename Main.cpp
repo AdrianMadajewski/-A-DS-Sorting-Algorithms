@@ -5,6 +5,9 @@
 #include "Info.h"
 #include "Test.h"
 
+// add Utility.cpp Utility.h
+// with redirect_to_file(), which_algo_to_use(), sorts_to_use()
+
 int main(int argc, char* argsv[])
 {
 	bool userData = askUser("Enter user data? -> 1 = yes, 0 = no");
@@ -43,7 +46,7 @@ int main(int argc, char* argsv[])
 		
 		if (redirectStream)
 		{
-			auto output = create::create_file();
+			auto output = create::redirect_to_file();
 			sorts_to_execute(output, vect);
 		}
 		else
@@ -76,7 +79,7 @@ int main(int argc, char* argsv[])
 
 		if (redirectStream)
 		{
-			auto output = create::create_file();
+			auto output = create::redirect_to_file();
 			performTesting(max_elements, full_info_mode, output);
 		}
 		else 
@@ -87,7 +90,8 @@ int main(int argc, char* argsv[])
 
 	std::cout << "Press enter to quit" << '\n';
 	std::cin.get();
-	std::cin.get();
+
+	
 
 	return 0;
 }
