@@ -3,8 +3,9 @@
 
 #include <iostream>
 
-#include "Data.h"
-#include "Sort.h"
+#include "Sorting.h"
+#include "Vector.h"
+#include "Input.h"
 
 namespace info
 {

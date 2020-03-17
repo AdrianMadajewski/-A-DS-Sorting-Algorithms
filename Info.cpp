@@ -1,7 +1,4 @@
 #include "Info.h"
-#include "Data.h"
-#include "Sort.h"
-#include "Input.h"
 
 namespace info
 {

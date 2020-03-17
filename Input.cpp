@@ -1,6 +1,6 @@
 #include "Input.h"
 
-int getUserInput(std::string_view message)
+int getUserInput(const std::string_view &message)
 {
 	if (!message.empty())
 		std::cout << message << '\n';
@@ -24,7 +24,7 @@ int getUserInput(std::string_view message)
 	}
 }
 
-int getUserDataSize(std::string_view message)
+int getUserDataSize(const std::string_view& message)
 {
 	if (!message.empty())
 		std::cout << message << '\n';
@@ -39,7 +39,7 @@ int getUserDataSize(std::string_view message)
 	}
 }
 
-int getUserMaxElementsRange(std::string_view message)
+int getUserMaxElementsRange(const std::string_view& message)
 {
 	if (!message.empty())
 		std::cout << message << '\n';
@@ -62,11 +62,15 @@ bool askUser(const std::string_view& message)
 	while (true)
 	{
 		int x = getUserInput();
-		if (x == 1)
-			return true;
-		if (x == 0)
+		switch (x)
+		{
+		case 0:
 			return false;
-		else
-			std::cout << "Invalid input - please try again" << '\n';
+		case 1:
+			return true;
+		default:
+			std::cout << "Invalid input - please try again." << '\n';
+			break;
+		}
 	}
 }

@@ -1,11 +1,12 @@
 #include <iostream>
 #include "Input.h"
-#include "Data.h"
-#include "Sort.h"
+#include "Vector.h"
 #include "Info.h"
 #include "Test.h"
+#include "Sorting.h"
+#include "Utility.h"
 
-int main(int argc, char* argsv[])
+int main()
 {
 	bool userData = askUser("Enter user data? -> 1 = yes, 0 = no");
 
@@ -13,12 +14,14 @@ int main(int argc, char* argsv[])
 	{
 		std::cout << "Current stream is set to std::cout. No redirect\n";
 
-		auto vect = create::user_vector("Enter how many elements");
+		auto vect = create_user_vector("Enter how many elements");
 
 		std::cout << "Entered data:" << '\n';
 		info::print_vector(std::cout, vect);
 
-		sorts_to_execute(std::cout, vect);
+		ask_for_execution(std::cout, vect);
+
+		std::sort(vect.data.begin(), vect.data.end());
 
 		std::cout << "Data after sorting:" << '\n';
 		info::print_vector(std::cout, vect);
@@ -34,7 +37,7 @@ int main(int argc, char* argsv[])
 		std::string filename;
 		std::cin >> filename;
 
-		auto vect = create::file_vector(filename);
+		auto vect = create_file_vector(filename);
 		std::cout << "Entered data:" << '\n';
 		info::print_vector(std::cout, vect);
 		
@@ -43,11 +46,11 @@ int main(int argc, char* argsv[])
 		
 		if (redirectStream)
 		{
-			auto output = create::create_file();
-			sorts_to_execute(output, vect);
+			auto output = redirect_to_file();
+			ask_for_execution(output, vect);
 		}
 		else
-			sorts_to_execute(std::cout, vect);
+			ask_for_execution(std::cout, vect);
 	}
 
 	std::cout << '\n';
@@ -76,17 +79,14 @@ int main(int argc, char* argsv[])
 
 		if (redirectStream)
 		{
-			auto output = create::create_file();
+			auto output = redirect_to_file();
 			performTesting(max_elements, full_info_mode, output);
 		}
 		else 
 			performTesting(max_elements, full_info_mode, std::cout);
-
-		std::cout << "DONE..." << '\n';
 	}
 
 	std::cout << "Press enter to quit" << '\n';
-	std::cin.get();
 	std::cin.get();
 
 	return 0;
