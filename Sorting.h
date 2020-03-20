@@ -16,7 +16,7 @@
 #include "ShellSort.h"
 
 #define UNIT_TIME std::chrono::microseconds
-inline constexpr auto SORTS_TO_USE = 5;
+inline constexpr auto SORTS_TO_USE{ 5 };
 
 enum SortType
 {
@@ -27,7 +27,10 @@ enum SortType
 	SHELL_SORT,
 };
 
+// Selects which algoritm to execute using the given data and outputs it to the provied stream with full-log disabled or enabled 
 void execute_algorithm(SortType algo, Vect data, std::ostream& stream = std::cout, bool log = false);
+
+// Changes SortType to it's std::string representation
 std::string SortType_toString(SortType type);
 
 #endif

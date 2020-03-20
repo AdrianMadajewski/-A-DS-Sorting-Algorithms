@@ -1,4 +1,5 @@
 #include "Input.h"
+#include "Test.h"
 
 int getUserInput(const std::string_view &message)
 {
@@ -31,11 +32,11 @@ int getUserDataSize(const std::string_view& message)
 
 	while (true)
 	{
-		int x = getUserInput();
+		int x{ getUserInput() };
 		if (x >= 1)
 			return x;
 		else
-			std::cout << "Invalid input - please try again." << '\n';
+			std::cout << "Data size must be greater 0. Try again." << '\n';
 	}
 }
 
@@ -46,11 +47,11 @@ int getUserMaxElementsRange(const std::string_view& message)
 
 	while (true)
 	{
-		int x = getUserInput();
-		if (x > 10)
+		int x{ getUserInput() };
+		if (x > MIN_ELEMENTS)
 			return x;
 		else
-			std::cout << "Invalid input - please try again." << '\n';
+			std::cout << "Must be grater or equal to " << MIN_ELEMENTS << ". Try again." << '\n';
 	}
 }
 
@@ -61,7 +62,7 @@ bool askUser(const std::string_view& message)
 
 	while (true)
 	{
-		int x = getUserInput();
+		int x{ getUserInput() };
 		switch (x)
 		{
 		case 0:
