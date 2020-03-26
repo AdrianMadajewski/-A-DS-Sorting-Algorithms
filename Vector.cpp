@@ -2,31 +2,6 @@
 #include "Input.h"
 #include "Sorting.h"
 
-/*
-std::ofstream redirect_to_file()
-{
-	std::cout << "Enter a filename to redirect:" << '\n';
-	std::string filename{};
-	std::cin >> filename;
-
-	std::ofstream file;
-	file.open(filename, std::ios::out);
-
-	if (!file.is_open())
-	{
-		std::cout << "Couldn't open file " << filename << '\n';
-		std::cout << "Please restart" << '\n';
-		std::cin.get();
-		exit(-1);
-	}
-	else
-	{
-		std::cout << "File opened - log will be set to '" << filename << "'" << '\n';
-		return file;
-	}
-}
-*/
-
 std::string VectType_toString(VectType type)
 {
 	switch (type)
@@ -83,7 +58,7 @@ Vect create_desc_vector(const int vector_size)
 Vect create_v_shaped_vector(const int vector_size)
 {
 	std::vector<int> data(vector_size);
-	for (int i = 0; i < vector_size / 2; ++i) {
+	for (int i{ 0 }; i < vector_size / 2; ++i) {
 		data.at(i) = VECTOR_DATA_MAX - i;
 		data.at(vector_size - i - 1) = VECTOR_DATA_MAX - i;
 	}
@@ -94,7 +69,7 @@ Vect create_v_shaped_vector(const int vector_size)
 Vect create_a_shaped_vector(const int vector_size)
 {
 	std::vector<int> data(vector_size);
-	for (int i = 0; i < vector_size / 2; ++i) {
+	for (int i{ 0 }; i < vector_size / 2; ++i) {
 		data.at(i) = VECTOR_DATA_MIN + i;
 		data.at(vector_size - i - 1) = VECTOR_DATA_MIN + i;
 	}
@@ -106,7 +81,7 @@ Vect create_user_vector(const std::string_view& message)
 {
 	const int size = getUserDataSize(message);
 	std::vector<int> data;
-	for (int i = 0; i < size; ++i) {
+	for (int i{ 0 }; i < size; ++i) {
 		std::cout << "data[" << i << "] = ";
 		int x = getUserInput();
 		data.emplace_back(x);

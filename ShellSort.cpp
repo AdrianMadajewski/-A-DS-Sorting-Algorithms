@@ -1,4 +1,5 @@
 #include "ShellSort.h"
+#include <iostream>
 
 void shell_sort(std::vector<int>& data, int& comparisons, int& swaps, std::vector<int>& knuths)
 {
@@ -6,8 +7,10 @@ void shell_sort(std::vector<int>& data, int& comparisons, int& swaps, std::vecto
 		return;
 
 	auto gap = 1;
-	while (gap < data.size())
+	while (gap <= data.size())
 		gap = gap * 3 + 1;
+	gap /= 9;
+	std::cout << gap << '\n';
 
 	while (gap > 0) {
 		knuths.emplace_back(gap);

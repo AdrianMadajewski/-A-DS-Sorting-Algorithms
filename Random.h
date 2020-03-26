@@ -5,7 +5,8 @@
 
 namespace random
 {
-	int generateNumber(const int, const int);
+	// Generates random number between [min, max] inclusive
+	int generateNumber(const int min, const int max);
 }
 
 #endif

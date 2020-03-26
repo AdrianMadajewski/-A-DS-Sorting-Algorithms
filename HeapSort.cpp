@@ -9,19 +9,14 @@ void validate(std::vector<int>& data, int heapSize, int parentIndex, int& swaps,
 	int	leftChild{ 2 * parentIndex + 1 };
 	int	rightChild{ 2 * parentIndex + 2 };
 
+	comparisons++;
 	if (leftChild < heapSize && data.at(leftChild) > data.at(maxIndex))
-	{
-		comparisons++;
 		maxIndex = leftChild;
-	}
 
-
+	comparisons++;
 	if (rightChild < heapSize && data.at(rightChild) > data.at(maxIndex))
-	{
 		maxIndex = rightChild;
-		comparisons++;
-	}
-
+		
 	if (maxIndex != parentIndex)
 	{
 		std::swap(data.at(maxIndex), data.at(parentIndex));

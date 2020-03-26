@@ -4,7 +4,7 @@
 
 void execute_algorithm(SortType algo, Vect vector, std::ostream& stream, bool log)
 {
-	auto& data = vector.data;
+	auto& data{ vector.data };
 
 	int comparisons{ 0 };
 	int swaps{ 0 };
